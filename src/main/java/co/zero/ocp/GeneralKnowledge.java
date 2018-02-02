@@ -1,11 +1,11 @@
 package co.zero.ocp;
 
 class GeneralKnowledge {
-    public static final String SHORT = "Short";
-    public static final String INT = "int";
-    public static final String INTEGER = "Integer";
-    public static final String OBJECT = "Object";
-    public static final String STRING = "String";
+    static final String SHORT = "Short";
+    static final String INT = "int";
+    static final String INTEGER = "Integer";
+    static final String OBJECT = "Object";
+    static final String STRING = "String";
 
 
     static String overloadingPrint(short number) {
@@ -78,6 +78,7 @@ class GeneralKnowledge {
         }
     }
 
+
     public static class Shape {
         private int x, y;
 
@@ -124,6 +125,19 @@ class GeneralKnowledge {
 
         public String getWrapperName(long param) {
             return "OverrideLowerLong";
+        }
+    }
+
+    public static class Figure {
+        public Shape drawFigure() {
+            return new Shape(0, 0);
+        }
+    }
+
+    public static class Figure3D extends Figure {
+        @Override
+        public Circle drawFigure() {
+            return new Circle(2, 2);
         }
     }
 }

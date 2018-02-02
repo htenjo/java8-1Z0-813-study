@@ -2,8 +2,22 @@ package co.zero.ocp;
 
 import org.junit.Test;
 
-import static co.zero.ocp.GeneralKnowledge.*;
-import static org.junit.Assert.*;
+import static co.zero.ocp.GeneralKnowledge.Circle;
+import static co.zero.ocp.GeneralKnowledge.Figure;
+import static co.zero.ocp.GeneralKnowledge.Figure3D;
+import static co.zero.ocp.GeneralKnowledge.INT;
+import static co.zero.ocp.GeneralKnowledge.INTEGER;
+import static co.zero.ocp.GeneralKnowledge.OBJECT;
+import static co.zero.ocp.GeneralKnowledge.SHORT;
+import static co.zero.ocp.GeneralKnowledge.STRING;
+import static co.zero.ocp.GeneralKnowledge.Shape;
+import static co.zero.ocp.GeneralKnowledge.ShapeEqualsOk;
+import static co.zero.ocp.GeneralKnowledge.ShapeEqualsWrong;
+import static co.zero.ocp.GeneralKnowledge.Triangle;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class GeneralLKnowledgeTest {
     @Test
@@ -49,7 +63,7 @@ public class GeneralLKnowledgeTest {
     }
 
     @Test
-    public void override_hiddenParentMethod_whenChildMethodUseCovariantParameters() {
+    public void override_hiddeParentMethod_whenChildMethodUseCovariantParameters() {
         ShapeEqualsWrong shape1 = new ShapeEqualsWrong(1, 2);
         ShapeEqualsWrong shape2 = new ShapeEqualsWrong(1, 2);
         Object shape3 = new ShapeEqualsWrong(1, 2);
@@ -82,13 +96,24 @@ public class GeneralLKnowledgeTest {
         Triangle triangle1 = new Triangle(1, 2);
         Shape shape2 = triangle1;
 
-        assertTrue(circle1.getName(1) == "OverrideOK");
-        assertTrue(shape1.getName(1) == "OverrideOK");
-        assertTrue(circle1.getName(param) == "OverrideInteger"); //Not override
-        assertTrue(circle1.getName(objectParam) == "OverrideObject"); //Not override
+        assertTrue(circle1.getName(1).equals("OverrideOK"));
+        assertTrue(shape1.getName(1).equals("OverrideOK"));
+        assertTrue(circle1.getName(param).equals("OverrideInteger")); //Not override
+        assertTrue(circle1.getName(objectParam).equals("OverrideObject")); //Not override
 
-        assertTrue(triangle1.getWrapperName(new Long(1)) == "OverrideOK");
-        assertTrue(triangle1.getWrapperName(1L) == "OverrideLowerLong"); //Not override
+        assertTrue(triangle1.getWrapperName(new Long(1)).equals("OverrideOK"));
+        assertTrue(triangle1.getWrapperName(1L).equals("OverrideLowerLong")); //Not override
+    }
+
+    @Test
+    public void override_works_whenChildMethodUsesCovariantReturn() {
+        Figure figure = new Figure();
+        Figure figure3d = new Figure3D();
+
+        assertTrue(figure.drawFigure() instanceof Shape);
+        assertTrue(figure.drawFigure().getName(1).equals("Shape1"));
+
+        assertTrue(figure3d.drawFigure() instanceof Circle);
+        assertTrue(figure3d.drawFigure().getName(1).equals("OverrideOK"));
     }
 }
-
