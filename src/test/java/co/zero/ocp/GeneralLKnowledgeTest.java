@@ -116,4 +116,21 @@ public class GeneralLKnowledgeTest {
         assertTrue(figure3d.drawFigure() instanceof Circle);
         assertTrue(figure3d.drawFigure().getName(1).equals("OverrideOK"));
     }
+
+    @Test
+    public void assignSubtypeToArray_works() {
+        Number[] numbers = new Integer[3];
+        numbers[0] = 1;
+        numbers[2] = 2;
+
+        assertTrue(numbers[0].equals(1));
+        assertTrue(numbers[2].equals(2));
+    }
+
+    @Test(expected = ArrayStoreException.class)
+    public void assignSubtypeToArray_throwException_whenDifferentSubtype() {
+        Number[] numbers = new Integer[3];
+        numbers[0] = 1.0;
+        numbers[2] = 2f;
+    }
 }
