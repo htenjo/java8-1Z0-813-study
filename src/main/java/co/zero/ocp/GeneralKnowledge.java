@@ -140,4 +140,26 @@ class GeneralKnowledge {
             return new Circle(2, 2);
         }
     }
+
+    public static final class MyFunction {
+        public final int getRandomInt() {
+            return 0;
+        }
+
+        @Override
+        public Object clone() throws CloneNotSupportedException {
+            return super.clone();
+        }
+    }
+
+    public static final class MyFunctionCloneable implements Cloneable {
+        public final int getRandomInt() {
+            return 0;
+        }
+
+        @Override
+        public Object clone() throws CloneNotSupportedException {
+            return super.clone();
+        }
+    }
 }

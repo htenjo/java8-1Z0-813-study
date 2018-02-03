@@ -133,4 +133,25 @@ public class GeneralLKnowledgeTest {
         numbers[0] = 1.0;
         numbers[2] = 2f;
     }
+
+    @Test
+    public void finalClasses_canHaveFinalMethod() {
+        GeneralKnowledge.MyFunction myFunction = new GeneralKnowledge.MyFunction();
+        assertEquals(0, myFunction.getRandomInt());
+    }
+
+    @Test(expected = CloneNotSupportedException.class)
+    public void implementCloneable_throwsException_whenCloneableInterfaceIsNotImplemented() throws Exception {
+        GeneralKnowledge.MyFunction function1 = new GeneralKnowledge.MyFunction();
+        Object function2 = function1.clone();
+        assertNotNull(function2);
+    }
+
+    @Test
+    public void implementCloneable_works_whenCloneableInterfaceIsImplemented() throws Exception {
+        GeneralKnowledge.MyFunctionCloneable function1 = new GeneralKnowledge.MyFunctionCloneable();
+        Object function2 = function1.clone();
+        assertNotNull(function1);
+        assertNotNull(function2);
+    }
 }
