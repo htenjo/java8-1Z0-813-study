@@ -162,4 +162,23 @@ class GeneralKnowledge {
             return super.clone();
         }
     }
+
+    public interface InterfacebleA {
+        default int getCounter() {
+            return 1;
+        }
+    }
+
+    public interface InterfacebleB {
+        default int getCounter() {
+            return 2;
+        }
+    }
+
+    public class Interfaceble implements InterfacebleA, InterfacebleB {
+        @Override
+        public int getCounter() {
+            return InterfacebleA.super.getCounter();
+        }
+    }
 }

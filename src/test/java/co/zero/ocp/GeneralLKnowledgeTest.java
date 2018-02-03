@@ -154,4 +154,10 @@ public class GeneralLKnowledgeTest {
         assertNotNull(function1);
         assertNotNull(function2);
     }
+
+    @Test
+    public void interfaceDiamord_works() {
+        GeneralKnowledge.Interfaceble classX = new GeneralKnowledge().new Interfaceble();
+        assertEquals(1, classX.getCounter());
+    }
 }
