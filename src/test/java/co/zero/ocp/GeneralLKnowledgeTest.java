@@ -160,4 +160,14 @@ public class GeneralLKnowledgeTest {
         GeneralKnowledge.Interfaceble classX = new GeneralKnowledge().new Interfaceble();
         assertEquals(1, classX.getCounter());
     }
+
+    public void m(int x, float y) {
+
+    }
+
+
+    public static void main(String[] args) {
+        GeneralLKnowledgeTest test = new GeneralLKnowledgeTest();
+        test.m(10, 10);
+    }
 }
